@@ -3,7 +3,6 @@ package ru.netology.data;
 import lombok.SneakyThrows;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
-import ru.netology.data.DataHelper;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -25,12 +24,13 @@ public class SQLHelper {
         var code = runner.query(conn, codeSQL, new ScalarHandler<String>());
         return new DataHelper.VerificationCode(code);
     }
-//    @SneakyThrows
-//    public static String checkingForABlockedUser() {
-//        var loginSQL = "SELECT login FROM users WHERE login='vasya' AND status='blocked'";
-//        var conn = getConn();
-//        return runner.query(conn, loginSQL, new ScalarHandler<String>());
-//    }
+
+    @SneakyThrows
+    public static String getUserStatus() {
+        var loginSQL = "SELECT status FROM users WHERE login = 'blocked'";
+        var conn = getConn();
+        return runner.query(conn, loginSQL, new ScalarHandler<String>());
+    }
     @SneakyThrows
     public static void cleanDatabase() {
         var conn = getConn();

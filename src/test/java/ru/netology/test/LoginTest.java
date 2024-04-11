@@ -7,8 +7,7 @@ import ru.netology.data.SQLHelper;
 import ru.netology.page.LoginPage;
 
 import static com.codeborne.selenide.Selenide.open;
-import static ru.netology.data.SQLHelper.cleanAuthCodes;
-import static ru.netology.data.SQLHelper.cleanDatabase;
+import static ru.netology.data.SQLHelper.*;
 
 public class LoginTest {
     LoginPage loginPage;
@@ -62,7 +61,8 @@ public class LoginTest {
         loginPage.validLoginWithRandomPassword(authInfo);
         loginPage.passwordField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         loginPage.validLoginWithRandomPassword(authInfo);
-        Assertions.assertEquals("blocked", "vasya");
+        Assertions.assertEquals("blocked", getUserStatus());
+
     }
     @Test
     @DisplayName("Не заполнен код")
