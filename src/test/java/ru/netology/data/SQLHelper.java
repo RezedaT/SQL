@@ -25,6 +25,12 @@ public class SQLHelper {
         var code = runner.query(conn, codeSQL, new ScalarHandler<String>());
         return new DataHelper.VerificationCode(code);
     }
+//    @SneakyThrows
+//    public static String checkingForABlockedUser() {
+//        var loginSQL = "SELECT login FROM users WHERE login='vasya' AND status='blocked'";
+//        var conn = getConn();
+//        return runner.query(conn, loginSQL, new ScalarHandler<String>());
+//    }
     @SneakyThrows
     public static void cleanDatabase() {
         var conn = getConn();
