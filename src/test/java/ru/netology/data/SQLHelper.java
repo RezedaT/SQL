@@ -27,7 +27,7 @@ public class SQLHelper {
 
     @SneakyThrows
     public static String getUserStatus() {
-        var loginSQL = "SELECT status FROM users WHERE login = 'blocked'";
+        var loginSQL = "SELECT status FROM users WHERE login = 'vasya'";
         var conn = getConn();
         return runner.query(conn, loginSQL, new ScalarHandler<String>());
     }
