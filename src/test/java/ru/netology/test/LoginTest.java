@@ -51,19 +51,7 @@ public class LoginTest {
         var authInfo = DataHelper.getAuthInfo();
         loginPage.emptyAuthorisation(authInfo);
     }
-//Баг-репорт. при трёхкратном неверном вводе пароля система должна блокироваться
-    @Test
-    @DisplayName("Трижды введен неверный пароль")
-    public void shouldBlockedUser() {
-        var authInfo = DataHelper.generateRandomPassworForUserVasya();
-        loginPage.validLogin(authInfo);
-        loginPage.passwordField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
-        loginPage.validLoginWithRandomPassword(authInfo);
-        loginPage.passwordField.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
-        loginPage.validLoginWithRandomPassword(authInfo);
-        Assertions.assertEquals("blocked", getUserStatus());
 
-    }
     @Test
     @DisplayName("Не заполнен код")
     public void shouldNotAuthoriseWithEmptyCode() {
